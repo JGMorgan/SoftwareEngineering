@@ -1,0 +1,29 @@
+<html ng-app = "movie_app">
+<head>
+
+</head>
+<body ng-controller = "movie_controller">
+
+    <div ng-show = "loginVisible">
+        What is your name
+        <form action="/entry" method="POST"><input type="text" name="name"/><input type="submit" value="go"/></form>
+    </div>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <script>
+        var app = angular.module("movie_app", []);
+        app.controller("movie_controller", ["$scope", function($scope) {
+            $scope.loginVisible = true;
+            $scope.enableAPP = function(){
+    			$scope.myValue = true;
+    			$scope.loginVisible = false;
+    		}
+        }])
+    </script>
+</body>
+</html>
