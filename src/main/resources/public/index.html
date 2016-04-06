@@ -1,17 +1,14 @@
 <html ng-app = "movie_app">
 <head>
-
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css"/>
 </head>
 <body ng-controller = "movie_controller">
 
     <div ng-show = "loginVisible">
         What is your name
-        <form action="/entry" method="POST"><input type="text" name="name"/><input type="submit" value="go"/></form>
+        <form action="/entry" method="POST"><input type="text" name="name"/><input type="submit" class="btn btn-info" value="go" ng-click="enableAPP()"/></form>
     </div>
-
-
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>

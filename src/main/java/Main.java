@@ -1,9 +1,6 @@
 /**
  * Created by jose on 3/23/16.
  */
-import spark.Request;
-import spark.Response;
-
 import static spark.Spark.*;
 
 public class Main {
