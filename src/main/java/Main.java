@@ -10,12 +10,21 @@ public class Main {
     public static void main(String[] args) {
         staticFileLocation("public");
         port(8000);
-        post("/entry", (request, response) -> {
+        post("/login", (request, response) -> {
             String name = request.queryParams("name");
+            String pass = request.queryParams("pass");
             System.out.println(name);
+            System.out.println(pass);
             if (name != null) {
                 request.session().attribute(SESSION_NAME, name);
             }
+            response.redirect("/");
+            return null;
+        });
+
+        post("/search", (request, response) -> {
+            String search = request.queryParams("search");
+            System.out.println(search);
             response.redirect("/");
             return null;
         });
