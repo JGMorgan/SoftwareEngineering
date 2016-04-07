@@ -10,6 +10,19 @@ public class Main {
     public static void main(String[] args) {
         staticFileLocation("public");
         port(8000);
+
+        get("/username", (request, response) -> {
+            String name = request.session().attribute(SESSION_NAME);
+
+            System.out.println("SESSION NAME EXISTS " + name);
+            if (name != null){
+                return name;
+            }else{
+                return SESSION_NAME;
+            }
+
+        });
+
         post("/login", (request, response) -> {
             String name = request.queryParams("name");
             String pass = request.queryParams("pass");
@@ -22,7 +35,7 @@ public class Main {
             return null;
         });
 
-        post("/search", (request, response) -> {
+        post("/", (request, response) -> {
             String search = request.queryParams("search");
             System.out.println(search);
             response.redirect("/");
