@@ -10,7 +10,11 @@ public class Main {
     public static void main(String[] args) {
         staticFileLocation("public");
         port(8000);
+        createRoutes();
 
+    }
+
+    public static void createRoutes(){
         get("/username", (request, response) -> {
             String name = request.session().attribute(SESSION_NAME);
 
@@ -41,6 +45,5 @@ public class Main {
             response.redirect("/");
             return null;
         });
-
     }
 }

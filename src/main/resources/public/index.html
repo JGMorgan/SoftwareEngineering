@@ -37,6 +37,7 @@
                     </li>
                 </ul>
                 <div>
+
                     <form class="navbar-form navbar-left" action="/search" method="POST">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search" name="search">
@@ -58,8 +59,11 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <div class="container" ng-show="registrationVisible">
+
+    </div>
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" ng-show="contentVisible">
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
@@ -144,6 +148,8 @@
     <script>
         var app = angular.module("movie_app", []);
         app.controller("movie_controller", ["$scope", "$http", function($scope, $http) {
+            $scope.contentVisible = true;
+            $scope.registrationVisible = false;
             $http.get("/username")
     		.then(function(response){
     		    $scope.name = response.data;
@@ -167,6 +173,12 @@
     			$scope.nameVisible = true;
     		}
         }])
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.multiselect').multiselect();
+            $('.datepicker').datepicker();
+        });
     </script>
 </body>
 </html>
