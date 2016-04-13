@@ -39,7 +39,23 @@ public class Main {
             return null;
         });
 
-        post("/", (request, response) -> {
+        post("/register", (request, response) -> {
+            String username = request.queryParams("user_name");
+            String fname = request.queryParams("first_name");
+            String lname = request.queryParams("last_name");
+            String email = request.queryParams("email");
+            String pass = request.queryParams("password");
+            String passconfirm = request.queryParams("password_confirmation");
+            System.out.println(fname);
+            System.out.println(pass);
+            if (username != null) {
+                request.session().attribute(SESSION_NAME, username);
+            }
+            response.redirect("/");
+            return null;
+        });
+
+        post("/search", (request, response) -> {
             String search = request.queryParams("search");
             System.out.println(search);
             response.redirect("/");
