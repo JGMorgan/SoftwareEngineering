@@ -1,6 +1,3 @@
-/**
- * Created by jose on 3/23/16.
- */
 import static spark.Spark.*;
 
 public class Main {
@@ -14,6 +11,9 @@ public class Main {
 
     }
 
+    /**
+     * sets up routes to connect to the front end
+     */
     public static void createRoutes(){
         get("/username", (request, response) -> {
             String name = request.session().attribute(SESSION_NAME);
@@ -34,6 +34,10 @@ public class Main {
             System.out.println(pass);
             if (name != null) {
                 request.session().attribute(SESSION_NAME, name);
+                /*
+                TODO
+                check the database for what type of user a certain username is
+                 */
             }
             response.redirect("/");
             return null;
