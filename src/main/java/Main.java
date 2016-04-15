@@ -1,4 +1,10 @@
+import com.mongodb.MongoClient;
+
 import static spark.Spark.*;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import com.mongodb.client.FindIterable;
+import com.mongodb.Block;
 
 public class Main {
 
@@ -8,9 +14,17 @@ public class Main {
         staticFileLocation("public");
         port(8000);
         createRoutes();
-
+        MongoClient client = new MongoClient("localhost", 27017);
+        MongoDatabase db = client.getDatabase("movies");
+        db.getCollection("movies").insertOne(new Document("name", "The Revenant"));
+        FindIterable<Document> iterable = db.getCollection("movies").find();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                System.out.println(document);
+            }
+        });
     }
-
     /**
      * sets up routes to connect to the front end
      */
