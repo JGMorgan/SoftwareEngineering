@@ -16,9 +16,9 @@ public class Buyer extends User {
 
     }
 
-    public Buyer(String userName, String passWord)
+    public Buyer(String userName, String password)
     {
-        super(userName, passWord);
+        super(userName, password);
         accountType = "Customer";
         wishList = new ArrayList<>();
         purchaseHistory = new ArrayList<>();
