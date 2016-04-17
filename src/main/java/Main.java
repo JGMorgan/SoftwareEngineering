@@ -16,7 +16,7 @@ public class Main {
         createRoutes();
         MongoClient client = new MongoClient("localhost", 27017);
         MongoDatabase db = client.getDatabase("movies");
-        db.getCollection("movies").insertOne(new Document("name", "The Revenant"));
+        //db.getCollection("movies").insertOne(new Document("name", "The Revenant"));
         FindIterable<Document> iterable = db.getCollection("movies").find();
         iterable.forEach(new Block<Document>() {
             @Override
