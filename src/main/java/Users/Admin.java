@@ -1,9 +1,9 @@
+package Users;
+
 /**
  * Created by Gajen on 4/16/2016.
  */
-public class Admin extends User{
-
-    private String accountType;
+public class Admin extends User {
 
     public Admin(String userName, String password)
     {

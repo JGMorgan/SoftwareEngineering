@@ -1,3 +1,7 @@
+package Users;
+
+import Users.Buyer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,8 +10,7 @@ import java.util.List;
  */
 public class Seller extends Buyer {
 
-    private List<String> salesHistory;
-    private String accountType;
+    protected List<String> salesHistory;
 
     public Seller(String userName, String password)
     {

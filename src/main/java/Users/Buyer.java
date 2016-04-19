@@ -1,4 +1,7 @@
-import java.awt.*;
+package Users;
+
+import Users.User;
+
 import java.util.*;
 import java.util.List;
 
@@ -7,19 +10,15 @@ import java.util.List;
  */
 public class Buyer extends User {
 
-    private List<String> wishList;
-    private List<String> purchaseHistory;
-    private String accountType;
+    protected List<String> wishList;
+    protected List<String> purchaseHistory;
 
-    public Buyer()
-    {
 
-    }
 
     public Buyer(String userName, String password)
     {
         super(userName, password);
-        accountType = "Customer";
+        accountType = "Buyer";
         wishList = new ArrayList<>();
         purchaseHistory = new ArrayList<>();
     }

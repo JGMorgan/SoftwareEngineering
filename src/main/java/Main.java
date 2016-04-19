@@ -1,6 +1,9 @@
+import Users.User;
 import com.mongodb.MongoClient;
 
 import static spark.Spark.*;
+
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import com.mongodb.client.FindIterable;
@@ -14,16 +17,10 @@ public class Main {
         staticFileLocation("public");
         port(8000);
         createRoutes();
-        MongoClient client = new MongoClient("localhost", 27017);
-        MongoDatabase db = client.getDatabase("movies");
-        //db.getCollection("movies").insertOne(new Document("name", "The Revenant"));
-        FindIterable<Document> iterable = db.getCollection("movies").find();
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                System.out.println(document);
-            }
-        });
+
+
+
+
     }
     /**
      * sets up routes to connect to the front end
@@ -46,6 +43,10 @@ public class Main {
             String pass = request.queryParams("pass");
             System.out.println(name);
             System.out.println(pass);
+            /*
+            * TODO
+            * verify the user is an actual user
+            * */
             if (name != null) {
                 request.session().attribute(SESSION_NAME, name);
                 /*
@@ -64,18 +65,12 @@ public class Main {
             String email = request.queryParams("email");
             String pass = request.queryParams("password");
             String passconfirm = request.queryParams("password_confirmation");
+            User newUser = new User(username, pass, fname, lname);
             System.out.println(fname);
             System.out.println(pass);
             if (username != null) {
                 request.session().attribute(SESSION_NAME, username);
             }
-            response.redirect("/");
-            return null;
-        });
-
-        post("/search", (request, response) -> {
-            String search = request.queryParams("search");
-            System.out.println(search);
             response.redirect("/");
             return null;
         });
