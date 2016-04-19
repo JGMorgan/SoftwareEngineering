@@ -10,6 +10,8 @@ public class User {
 
     protected String userName;
     protected String password;
+    protected String firstname;
+    protected String lastname;
     protected String accountType;
 
     /**
@@ -25,6 +27,10 @@ public class User {
         * TODO
         * add user to the database
         * */
+        this.userName = userName;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     /**
