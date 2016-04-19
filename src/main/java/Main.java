@@ -19,20 +19,19 @@ public class Main {
         createRoutes();
 
 
-
-
     }
+
     /**
      * sets up routes to connect to the front end
      */
-    public static void createRoutes(){
+    public static void createRoutes() {
         get("/username", (request, response) -> {
             String name = request.session().attribute(SESSION_NAME);
 
             System.out.println("SESSION NAME EXISTS " + name);
-            if (name != null){
+            if (name != null) {
                 return name;
-            }else{
+            } else {
                 return SESSION_NAME;
             }
 

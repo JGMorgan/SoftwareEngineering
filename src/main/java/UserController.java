@@ -14,52 +14,31 @@ public class UserController {
     private long lockOutTime = 0;
     private long elapsedTime = 0;
 
-    public void SubmitButton()
-    {
-        if(loginAttempts < MAX_LOGIN_ATTEMPTS && System.currentTimeMillis() > elapsedTime)
-        {
-            if(!exists)
-            {
+    public void SubmitButton() {
+        if (loginAttempts < MAX_LOGIN_ATTEMPTS && System.currentTimeMillis() > elapsedTime) {
+            if (!exists) {
                 System.out.println("Sorry, that username does not exist");
                 loginAttempts++;
-            }
-            else
-            {
+            } else {
 
             }
-
-        }
-        else if (!(loginAttempts < MAX_LOGIN_ATTEMPTS))
-        {
+        } else if (!(loginAttempts < MAX_LOGIN_ATTEMPTS)) {
             lockOutTime = 0;
             loginAttempts = 1;
-            if(!exists)
-            {
+            if (!exists) {
                 System.out.println("Sorry, that username does not exist");
                 loginAttempts++;
-            }
-            else
-            {
+            } else {
 
             }
-        }
-        else
-        {
+        } else {
             lockout = true;
-            if(lockOutTime == 0)
-            {
+            if (lockOutTime == 0) {
                 lockOutTime = System.currentTimeMillis();
                 elapsedTime = lockOutTime + TIME_LOCKED_OUT;
-            }
-            else
-            {
+            } else {
                 lockOutTime = 0;
             }
-
         }
-
     }
-
-
-
 }
