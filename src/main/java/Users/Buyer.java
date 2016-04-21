@@ -13,8 +13,8 @@ import javax.swing.text.Document;
  */
 public class Buyer extends User {
 
-    protected List<String> wishList;
-    protected List<String> purchaseHistory;
+    protected ArrayList<String> wishList;
+    protected ArrayList<String> purchaseHistory;
     protected ArrayList<org.bson.Document> moviesList = DatabaseConnector.getMovies();
 
 
@@ -39,7 +39,16 @@ public class Buyer extends User {
 
     public org.bson.Document viewMovie(org.bson.Document movieTitle)
     {
-        return movieTitle;
+        for(int i = 0; i < moviesList.size(); i++)
+        {
+            if(moviesList.contains(movieTitle))
+            {
+                return movieTitle;
+            }
+        }
+        //display error: sorry, that movie is no longer being sold
+        return null;
+
     }
 
     public String getAccountType()
