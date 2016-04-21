@@ -44,13 +44,13 @@ public class DatabaseConnector {
     /**
      * @return an arraylist with all the movies
      */
-    public static ArrayList<Document> getMovies() {
+    public static ArrayList<String> getMovies() {
         FindIterable<Document> iterable = movies.find();
-        ArrayList<Document> movies = new ArrayList();
+        ArrayList<String> movies = new ArrayList();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                movies.add(document);
+                movies.add(document.toString());
             }
         });
         return movies;
@@ -59,13 +59,13 @@ public class DatabaseConnector {
     /**
      * @return an arraylist with all the users
      */
-    public static ArrayList<Document> getUsers() {
+    public static ArrayList<String> getUsers() {
         FindIterable<Document> iterable = movies.find();
-        ArrayList<Document> users = new ArrayList();
+        ArrayList<String> users = new ArrayList();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                users.add(document);
+                users.add(document.toString());
             }
         });
         return users;

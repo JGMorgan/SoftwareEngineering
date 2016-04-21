@@ -1,3 +1,4 @@
+import DatabaseOperations.DatabaseConnector;
 import Users.User;
 import com.mongodb.MongoClient;
 
@@ -35,6 +36,10 @@ public class Main {
                 return SESSION_NAME;
             }
 
+        });
+
+        get("/movies", (request, response) -> {
+            return DatabaseConnector.getMovies().toArray();
         });
 
         post("/login", (request, response) -> {
