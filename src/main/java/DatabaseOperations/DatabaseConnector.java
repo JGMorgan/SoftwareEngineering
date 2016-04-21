@@ -1,3 +1,5 @@
+package DatabaseOperations;
+
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
@@ -11,19 +13,14 @@ import java.util.ArrayList;
  * Created by jose on 4/18/16.
  */
 public class DatabaseConnector {
-    MongoClient client;
-    MongoDatabase db;
-    MongoCollection movies;
-    MongoCollection users;
+    static MongoClient client = new MongoClient("localhost", 27017);
+    static MongoDatabase db = client.getDatabase("softwareegineering");
+    static MongoCollection movies = db.getCollection("movies");
+    static MongoCollection users = db.getCollection("users");
 
-    public DatabaseConnector() {
-        client = new MongoClient("localhost", 27017);
-        db = client.getDatabase("softwareegineering");
-        movies = db.getCollection("movies");
-        users = db.getCollection("users");
-    }
+    private DatabaseConnector(){}
 
-    public void insertMovie() {
+    public static void insertMovie() {
         //movies.insertOne();
 
     }
@@ -35,7 +32,7 @@ public class DatabaseConnector {
      * @param lastname
      * @param accountType
      */
-    public void insertUser(String userName, String password, String firstname, String lastname, String accountType) {
+    public static void insertUser(String userName, String password, String firstname, String lastname, String accountType) {
         users.insertOne(new Document()
                 .append("username", userName)
                 .append("password", password)
@@ -47,13 +44,13 @@ public class DatabaseConnector {
     /**
      * @return an arraylist with all the movies
      */
-    public ArrayList<Document> getMovies() {
+    public static ArrayList<String> getMovies() {
         FindIterable<Document> iterable = movies.find();
-        ArrayList<Document> movies = new ArrayList();
+        ArrayList<String> movies = new ArrayList();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                movies.add(document);
+                movies.add(document.toString());
             }
         });
         return movies;
@@ -62,13 +59,13 @@ public class DatabaseConnector {
     /**
      * @return an arraylist with all the users
      */
-    public ArrayList<Document> getUsers() {
+    public static ArrayList<String> getUsers() {
         FindIterable<Document> iterable = movies.find();
-        ArrayList<Document> users = new ArrayList();
+        ArrayList<String> users = new ArrayList();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                users.add(document);
+                users.add(document.toString());
             }
         });
         return users;
@@ -77,7 +74,7 @@ public class DatabaseConnector {
     /**
      * This method is for testing
      */
-    public void displayMovies() {
+    public static void displayMovies() {
         FindIterable<Document> iterable = movies.find();
         iterable.forEach(new Block<Document>() {
             @Override
@@ -90,7 +87,7 @@ public class DatabaseConnector {
     /**
      * This method is for testing
      */
-    public void displayUsers() {
+    public static void displayUsers() {
         FindIterable<Document> iterable = users.find();
         iterable.forEach(new Block<Document>() {
             @Override

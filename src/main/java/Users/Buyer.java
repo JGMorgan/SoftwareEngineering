@@ -4,15 +4,18 @@ import Users.User;
 
 import java.util.*;
 import java.util.List;
+import DatabaseOperations.DatabaseConnector;
+
+import javax.swing.text.Document;
 
 /**
  * Created by Gajen on 4/14/2016.
  */
 public class Buyer extends User {
 
-    protected List<String> wishList;
-    protected List<String> purchaseHistory;
-
+    protected ArrayList<String> wishList;
+    protected ArrayList<String> purchaseHistory;
+    protected ArrayList<org.bson.Document> moviesList = DatabaseConnector.getMovies();
 
 
     public Buyer(String userName, String password)
@@ -23,14 +26,29 @@ public class Buyer extends User {
         purchaseHistory = new ArrayList<>();
     }
 
-    public void purchase()
+    public void purchase(org.bson.Document movieTitle)
     {
-        throw new UnsupportedOperationException();
+        for(int i = 0; i < moviesList.size(); i++)
+        {
+            if(moviesList.contains(movieTitle))
+            {
+                //Remove 1 from the amount of that particular movie, if the result is zero, remove that movie from the list
+            }
+        }
     }
 
-    public void viewMovie()
+    public org.bson.Document viewMovie(org.bson.Document movieTitle)
     {
-        throw new UnsupportedOperationException();
+        for(int i = 0; i < moviesList.size(); i++)
+        {
+            if(moviesList.contains(movieTitle))
+            {
+                return movieTitle;
+            }
+        }
+        //display error: sorry, that movie is no longer being sold
+        return null;
+
     }
 
     public String getAccountType()
