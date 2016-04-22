@@ -15,7 +15,6 @@ public class Buyer extends User {
 
     protected ArrayList<String> wishList;
     protected ArrayList<String> purchaseHistory;
-    protected ArrayList<org.bson.Document> moviesList = DatabaseConnector.getMovies();
 
 
     public Buyer(String userName, String password)
@@ -26,28 +25,15 @@ public class Buyer extends User {
         purchaseHistory = new ArrayList<>();
     }
 
-    public void purchase(org.bson.Document movieTitle)
+
+    public void purchase(String movieTitle)
     {
-        for(int i = 0; i < moviesList.size(); i++)
-        {
-            if(moviesList.contains(movieTitle))
-            {
-                //Remove 1 from the amount of that particular movie, if the result is zero, remove that movie from the list
-            }
-        }
+        DatabaseConnector.updateMovieStock(movieTitle, -1);
     }
 
-    public org.bson.Document viewMovie(org.bson.Document movieTitle)
+    public String viewMovie(String movieTitle)
     {
-        for(int i = 0; i < moviesList.size(); i++)
-        {
-            if(moviesList.contains(movieTitle))
-            {
-                return movieTitle;
-            }
-        }
-        //display error: sorry, that movie is no longer being sold
-        return null;
+        return DatabaseConnector.getMovie(movieTitle);
 
     }
 
@@ -65,9 +51,5 @@ public class Buyer extends User {
     {
         return purchaseHistory;
     }
-
-
-
-
 
 }

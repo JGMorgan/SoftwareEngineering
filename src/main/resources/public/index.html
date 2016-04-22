@@ -24,7 +24,7 @@
                     <li class="active"><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
                     <li ng-show="sellerOpsVisible"><a href="#">Sell a Movie</a></li>
-                    <li ng-show="adminOpsVisible"><a href="#">Users.Admin Swag</a></li>
+                    <li ng-show="adminOpsVisible"><a href="#">Admin Swag</a></li>
                 </ul>
                 <div>
                     <form class="navbar-form navbar-left" action="/search" method="POST">
@@ -143,7 +143,7 @@
     <script>
         var app = angular.module("movie_app", []);
         app.controller("movie_controller", ["$scope", "$http", function($scope, $http) {
-            #scope.movies = [];
+            $scope.movies = [];
             $scope.contentVisible = true;
             $scope.registrationVisible = false;
             $scope.adminOpsVisible = false;
@@ -169,17 +169,18 @@
     		.then(function(response){
     		    $scope.movies = response.data;
     		});
+
     		$scope.enableRegistration = function(){
                 console.log("Its happening");
     			$scope.contentVisible = false;
     			$scope.registrationVisible = true;
-    		}
+    		};
 
             $scope.enableAPP = function(){
                 console.log("Its happening");
     			$scope.loginVisible = false;
     			$scope.nameVisible = true;
-    		}
+    		};
         }])
     </script>
 </body>

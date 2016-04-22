@@ -10,7 +10,8 @@ import org.bson.Document;
 import java.util.ArrayList;
 
 /**
- * Created by jose on 4/18/16.
+ * This is a utility class similar to Java's math class
+ * so all of the methods are static
  */
 public class DatabaseConnector {
     static MongoClient client = new MongoClient("localhost", 27017);
@@ -18,8 +19,12 @@ public class DatabaseConnector {
     static MongoCollection movies = db.getCollection("movies");
     static MongoCollection users = db.getCollection("users");
 
-    private DatabaseConnector(){}
 
+    /**
+     * TODO
+     * this should insert a movie into the database but we need to finalize
+     * what a movie element in the database should look like
+     */
     public static void insertMovie() {
         //movies.insertOne();
 
@@ -54,6 +59,25 @@ public class DatabaseConnector {
             }
         });
         return movies;
+    }
+
+    /**
+     *
+     * @return the movie if it exists if it doesn't it will return null
+     */
+    public static String getMovie(String title) {
+        FindIterable<Document> iterable = movies.find(new Document("name", title));
+        return iterable.first().toString();
+    }
+
+    /**
+     * Used for adding stock and when the buyer purchases a movie
+     * @param title
+     * @param stock
+     */
+    public static void updateMovieStock(String title, int stock) {
+        movies.findOneAndUpdate(new Document("name", title), new Document());
+        //replace this with an updated stock
     }
 
     /**

@@ -26,6 +26,11 @@ public class Main {
      * sets up routes to connect to the front end
      */
     public static void createRoutes() {
+        /**
+         * returns the username or the string "username"
+         * if the string is "username" then the user is not logged in
+         * otherwise it will return the user's username
+         */
         get("/username", (request, response) -> {
             String name = request.session().attribute(SESSION_NAME);
 
@@ -38,10 +43,18 @@ public class Main {
 
         });
 
+        /**
+         *This will return an array of movies that can be shown
+         * to the user in the front end
+         */
         get("/movies", (request, response) -> {
             return DatabaseConnector.getMovies().toArray();
         });
 
+        /**
+         * Posts the username and password from the front end
+         * to the Java backend
+         */
         post("/login", (request, response) -> {
             String name = request.queryParams("name");
             String pass = request.queryParams("pass");
@@ -62,6 +75,10 @@ public class Main {
             return null;
         });
 
+        /**
+         * Posts registration information from the front end
+         * to the Java backend
+         */
         post("/register", (request, response) -> {
             String username = request.queryParams("user_name");
             String fname = request.queryParams("first_name");
