@@ -64,6 +64,13 @@ public class Main {
             * TODO
             * verify the user is an actual user
             * */
+            for(int i = 0; i < DatabaseConnector.getUsers().size(); i++)
+            {
+                if(!DatabaseConnector.getUsers().contains(name))
+                {
+                    return null;
+                }
+            }
             if (name != null) {
                 request.session().attribute(SESSION_NAME, name);
                 /*
@@ -72,6 +79,14 @@ public class Main {
                  */
             }
             response.redirect("/");
+            return null;
+        });
+
+        /**
+         * Posts user to logout when needed
+         */
+        post("/logout", (request, response) -> {
+
             return null;
         });
 
