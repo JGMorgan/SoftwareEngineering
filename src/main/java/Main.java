@@ -19,7 +19,6 @@ public class Main {
     public static void main(String[] args) {
         staticFileLocation("public");
         port(8000);
-        DatabaseConnector.displayUsers();
         createRoutes();
 
 
@@ -64,7 +63,6 @@ public class Main {
             System.out.println(name);
             System.out.println(pass);
             Document user = DatabaseConnector.getUser(name,pass);
-            DatabaseConnector.displayUsers();
             if (user == null){
                 request.session().attribute(SESSION_NAME, "/invalid/");
             }else{
@@ -103,7 +101,7 @@ public class Main {
             String email = request.queryParams("email");
             String pass = request.queryParams("password");
             String passconfirm = request.queryParams("password_confirmation");
-            Buyer newUser = new Buyer(username, pass, fname, lname, );
+            Buyer newUser = new Buyer(username, pass, fname, lname);
             System.out.println(fname);
             System.out.println(pass);
             if (username != null) {

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class DatabaseConnector {
     static MongoClient client = new MongoClient("52.201.189.109", 27017);
-    static MongoDatabase db = client.getDatabase("softwarengineering");
+    static MongoDatabase db = client.getDatabase("softwareengineering");
     static MongoCollection movies = db.getCollection("movies");
     static MongoCollection users = db.getCollection("users");
 
@@ -50,6 +50,13 @@ public class DatabaseConnector {
                     .append("accounttype", accountType));
             return true;
         }
+    }
+
+    public static Document getUser(String name, String password) {
+        FindIterable<Document> iterable = users.find(new Document()
+                                                .append("username", name)
+                                                .append("password", password));
+        return iterable.first();
     }
 
     /**
