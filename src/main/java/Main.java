@@ -112,6 +112,7 @@ public class Main {
             response.redirect("/");
             return null;
         });
+
         //Possible search function
         post("/search", (request, response) -> {
             String searchTitle = request.queryParams("movie_title");
