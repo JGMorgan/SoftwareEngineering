@@ -82,15 +82,15 @@ public class Main {
             return null;
         });
 
-        get("/register", (request, response) -> {
-            String username = request.queryParams("user_name");
-            String email = request.queryParams("email");
-
-            if(DatabaseConnector.userExists(username, email))
-                request.session().attribute(SESSION_NAME, "/invalidRegistration");
-
-            return null;
-        });
+//        get("/register", (request, response) -> {
+//            String username = request.queryParams("user_name");
+//            String email = request.queryParams("email");
+//
+//            if(DatabaseConnector.userExists(username, email))
+//                request.session().attribute(SESSION_NAME, "/invalidRegistration");
+//
+//            return null;
+//        });
 
         /**
          * Posts registration information from the front end
@@ -103,11 +103,18 @@ public class Main {
             String email = request.queryParams("email");
             String pass = request.queryParams("password");
             String passconfirm = request.queryParams("password_confirmation");
-            Buyer newUser = new Buyer(username, pass, fname, lname);
-            System.out.println(fname);
-            System.out.println(pass);
-            if (username != null) {
-                request.session().attribute(SESSION_NAME, username);
+
+
+            if(DatabaseConnector.userExists(username) && pass == passconfirm) {
+                request.session().attribute(SESSION_NAME, "/invalidRegistration");
+            }
+            else{
+                new Buyer(username, pass, fname, lname, email);
+                System.out.println(fname);
+                System.out.println(pass);
+                if (username != null) {
+                    request.session().attribute(SESSION_NAME, username);
+                }
             }
             response.redirect("/");
             return null;

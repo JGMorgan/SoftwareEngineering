@@ -74,20 +74,10 @@ public class DatabaseConnector {
         return users;
     }
 
-    public static boolean userExists(String username, String email) {
-        FindIterable<Document> iterable = movies.find(new Document()
-                                                      .append("username", username)
-                                                      .append("email", email));
-        ArrayList<String> users = new ArrayList();
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                users.add(document.toString());
-            }
-        });
-
-        if(users.size() >= 1) return true;
-        else return false;
+    public static boolean userExists(String username) {
+        FindIterable<Document> iterable = movies.find(new Document("username", username));
+        if (iterable.first().isEmpty()) return false;
+        else return true;
     }
 
     /**
