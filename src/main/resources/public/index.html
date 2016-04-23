@@ -189,6 +189,8 @@
     		    $scope.name = response.data;
     		    console.log($scope.name);
     		    if ($scope.name == "username" || $scope.name == null || $scope.name == "/invalid/"){
+                    if($scope.name == "/invalid/")
+                        this.alert("Your login information is invalid. Please try again or click the Register button");
                     $scope.loginVisible = true;
                     $scope.nameVisible = false;
                     console.log("login");
