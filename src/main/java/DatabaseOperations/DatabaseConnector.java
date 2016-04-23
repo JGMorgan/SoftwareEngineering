@@ -24,32 +24,22 @@ public class DatabaseConnector {
      * @param password
      * @param firstname
      * @param lastname
-     * @param accountType
+     * @param email
      */
-    public static boolean insertUser(String userName, String password, String firstname, String lastname, String accountType) {
-
-        FindIterable<Document> iterable = users.find(new Document("username", userName));
-        ArrayList<String> usernames = new ArrayList();
-
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                usernames.add(document.toString());
-            }
-        });
-
-        if (usernames.size() >= 1)
-        // explain error
-        return false;
-        else{
+    public static void insertUser(String userName, String password, String firstname, String lastname, String email) {
             users.insertOne(new Document()
                     .append("username", userName)
                     .append("password", password)
                     .append("firstname", firstname)
                     .append("lastname", lastname)
-                    .append("accounttype", accountType));
-            return true;
-        }
+                    .append("email", email));
+    }
+
+    public static void updateUserType(String username, String accountType){
+        Document user = new Document("username", username);
+        Document updateField = new Document("accountType", accountType);
+
+        users.updateOne(user, updateField);
     }
 
     public static Document getUser(String name, String password) {
@@ -58,6 +48,8 @@ public class DatabaseConnector {
                                                 .append("password", password));
         return iterable.first();
     }
+
+
 
     /**
      * @return an arraylist with all the users
@@ -74,10 +66,9 @@ public class DatabaseConnector {
         return users;
     }
 
-    public static boolean userExists(String username) {
-        FindIterable<Document> iterable = movies.find(new Document("username", username));
-        if (iterable.first().isEmpty()) return false;
-        else return true;
+    public static Document userExists(String username) {
+        FindIterable<Document> iterable = users.find(new Document("username", username));
+        return iterable.first();
     }
 
     /**

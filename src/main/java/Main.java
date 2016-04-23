@@ -104,17 +104,16 @@ public class Main {
             String pass = request.queryParams("password");
             String passconfirm = request.queryParams("password_confirmation");
 
-
-            if(DatabaseConnector.userExists(username) && pass == passconfirm) {
-                request.session().attribute(SESSION_NAME, "/invalidRegistration");
-            }
-            else{
+            Document user = DatabaseConnector.userExists(username);
+            if(user == null ) {
                 new Buyer(username, pass, fname, lname, email);
                 System.out.println(fname);
                 System.out.println(pass);
-                if (username != null) {
-                    request.session().attribute(SESSION_NAME, username);
-                }
+                request.session().attribute(SESSION_NAME, username);
+
+            }
+            else{
+                request.session().attribute(SESSION_NAME, "/invalidRegistration");
             }
             response.redirect("/");
             return null;

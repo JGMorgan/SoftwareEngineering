@@ -22,29 +22,19 @@ public class Buyer extends User {
     public Buyer(String userName, String password, String firstName, String lastName, String email) {
         super(userName, password, firstName, lastName, email);
         accountType = "Buyer";
-        wishList = new ArrayList<>();
-        purchaseHistory = new ArrayList<>();
+//        wishList = new ArrayList<>();
+//        purchaseHistory = new ArrayList<>();
+
+//        DatabaseConnector.updateUserType(userName, accountType);
     }
 
+    public void purchase(String movieTitle) { DatabaseConnector.updateMovieStock(movieTitle, -1); }
 
-    public void purchase(String movieTitle) {
-        DatabaseConnector.updateMovieStock(movieTitle, -1);
-    }
+    public String viewMovie(String movieTitle) { return DatabaseConnector.getMovie(movieTitle); }
 
-    public String viewMovie(String movieTitle) {
-        return DatabaseConnector.getMovie(movieTitle);
-    }
+    public String getAccountType() { return accountType; }
 
-    public String getAccountType() {
-        return accountType;
-    }
+    public List getWishList() { return wishList; }
 
-    public List getWishList() {
-        return wishList;
-    }
-
-    public List getPurchaseHistory() {
-        return purchaseHistory;
-    }
-
+    public List getPurchaseHistory() { return purchaseHistory; }
 }

@@ -1,5 +1,7 @@
 package Users;
 
+import DatabaseOperations.DatabaseConnector;
+
 /**
  * Created by Gajen on 4/14/2016.
  */
@@ -28,11 +30,13 @@ public abstract class User {
         * TODO
         * add user to the database
         * */
-        this.userName = userName;
-        this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
+//        this.userName = userName;
+//        this.password = password;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.email = email;
+
+        DatabaseConnector.insertUser(userName, password, firstname, lastname, email);
     }
 
     /**
