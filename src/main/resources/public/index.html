@@ -155,7 +155,7 @@
     		.then(function(response){
     		    $scope.name = response.data;
     		    console.log($scope.name);
-    		    if ($scope.name == "username" || $scope.name == null){
+    		    if ($scope.name == "username" || $scope.name == null || $scope.name == "/invalid/"){
                     $scope.loginVisible = true;
                     $scope.nameVisible = false;
                     console.log("login");

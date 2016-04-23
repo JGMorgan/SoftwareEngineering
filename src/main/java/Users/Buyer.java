@@ -28,12 +28,12 @@ public class Buyer extends User {
 
     public void purchase(String movieTitle)
     {
-        DatabaseConnector.updateMovieStock(movieTitle, -1);
+        //DatabaseConnector.updateMovieStock(movieTitle, -1);
     }
 
     public String viewMovie(String movieTitle)
     {
-        return DatabaseConnector.getMovie(movieTitle);
+        return "";//DatabaseConnector.getMovie(movieTitle).toString();
 
     }
 

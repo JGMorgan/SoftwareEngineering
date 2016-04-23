@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class DatabaseConnector {
     static MongoClient client = new MongoClient("52.201.189.109", 27017);
-    static MongoDatabase db = client.getDatabase("softwareegineering");
+    static MongoDatabase db = client.getDatabase("softwareengineering");
     static MongoCollection movies = db.getCollection("movies");
     static MongoCollection users = db.getCollection("users");
 
@@ -37,25 +37,26 @@ public class DatabaseConnector {
      * @param lastname
      * @param accountType
      */
-    public static void insertUser(String userName, String password, String firstname, String lastname, String accountType) {
+    public static void insertUser(String userName, String password, String firstname, String lastname, String email, String accountType) {
         users.insertOne(new Document()
                 .append("username", userName)
                 .append("password", password)
                 .append("firstname", firstname)
                 .append("lastname", lastname)
+                .append("email", email)
                 .append("accounttype", accountType));
     }
 
     /**
      * @return an arraylist with all the movies
      */
-    public static ArrayList<String> getMovies() {
+    public static ArrayList<Document> getMovies() {
         FindIterable<Document> iterable = movies.find();
-        ArrayList<String> movies = new ArrayList();
+        ArrayList<Document> movies = new ArrayList();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                movies.add(document.toString());
+                movies.add(document);
             }
         });
         return movies;
@@ -65,11 +66,28 @@ public class DatabaseConnector {
      *
      * @return the movie if it exists if it doesn't it will return null
      */
-    public static String getMovie(String title) {
+    public static Document getMovie(String title) {
         FindIterable<Document> iterable = movies.find(new Document("name", title));
-        return iterable.first().toString();
+        return iterable.first();
     }
 
+    /**
+     *
+     * @param name
+     * @param password
+     * @return the user with that password and username if null is returned then it doesn't exist
+     */
+    public static Document getUser(String name, String password) {
+        FindIterable<Document> iterable = users.find();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                System.out.println(document);
+            }
+        });
+
+        return iterable.first();
+    }
     /**
      * Used for adding stock and when the buyer purchases a movie
      * @param title
@@ -83,13 +101,13 @@ public class DatabaseConnector {
     /**
      * @return an arraylist with all the users
      */
-    public static ArrayList<String> getUsers() {
+    public static ArrayList<Document> getUsers() {
         FindIterable<Document> iterable = movies.find();
-        ArrayList<String> users = new ArrayList();
+        ArrayList<Document> users = new ArrayList();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                users.add(document.toString());
+                users.add(document);
             }
         });
         return users;
