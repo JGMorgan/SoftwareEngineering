@@ -64,6 +64,8 @@ public class Main {
             * TODO
             * verify the user is an actual user
             * */
+            //This loop will check if the user in the database, so now it wont say Hey, to any generic name
+            //but it still says Hey, Username.
             for(int i = 0; i < DatabaseConnector.getUsers().size(); i++)
             {
                 if(!DatabaseConnector.getUsers().contains(name))
