@@ -17,6 +17,7 @@ public class Main {
     public static void main(String[] args) {
         staticFileLocation("public");
         port(8000);
+        DatabaseConnector.displayUsers();
         createRoutes();
 
 
@@ -60,25 +61,12 @@ public class Main {
             String pass = request.queryParams("pass");
             System.out.println(name);
             System.out.println(pass);
-            /*
-            * TODO
-            * verify the user is an actual user
-            * */
-            //This loop will check if the user in the database, so now it wont say Hey, to any generic name
-            //but it still says Hey, Username.
-            for(int i = 0; i < DatabaseConnector.getUsers().size(); i++)
-            {
-                if(!DatabaseConnector.getUsers().contains(name))
-                {
-                    return null;
-                }
-            }
-            if (name != null) {
+            Document user = DatabaseConnector.getUser(name,pass);
+            DatabaseConnector.displayUsers();
+            if (user == null){
+                request.session().attribute(SESSION_NAME, "/invalid/");
+            }else{
                 request.session().attribute(SESSION_NAME, name);
-                /*
-                TODO
-                check the database for what type of user a certain username is
-                 */
             }
             response.redirect("/");
             return null;
