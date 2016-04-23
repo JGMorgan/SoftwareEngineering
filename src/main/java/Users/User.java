@@ -13,6 +13,7 @@ public abstract class User {
     protected String firstname;
     protected String lastname;
     protected String accountType;
+    protected String email;
 
     /**
      * Use this constructor for Registration
@@ -21,7 +22,7 @@ public abstract class User {
      * @param firstname
      * @param lastname
      */
-    public User(String userName, String password, String firstname, String lastname)
+    public User(String userName, String password, String firstname, String lastname, String email)
     {
         /*
         * TODO
@@ -31,6 +32,7 @@ public abstract class User {
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.email = email;
     }
 
     /**
