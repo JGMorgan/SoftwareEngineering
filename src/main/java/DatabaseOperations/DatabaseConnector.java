@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * so all of the methods are static
  */
 public class DatabaseConnector {
-    static MongoClient client = new MongoClient("localhost", 27017);
+    static MongoClient client = new MongoClient("52.201.189.109", 27017);
     static MongoDatabase db = client.getDatabase("softwareegineering");
     static MongoCollection movies = db.getCollection("movies");
     static MongoCollection users = db.getCollection("users");
