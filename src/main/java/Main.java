@@ -64,6 +64,15 @@ public class Main {
             * TODO
             * verify the user is an actual user
             * */
+            //This loop will check if the user in the database, so now it wont say Hey, to any generic name
+            //but it still says Hey, Username.
+            for(int i = 0; i < DatabaseConnector.getUsers().size(); i++)
+            {
+                if(!DatabaseConnector.getUsers().contains(name))
+                {
+                    return null;
+                }
+            }
             if (name != null) {
                 request.session().attribute(SESSION_NAME, name);
                 /*
@@ -72,6 +81,14 @@ public class Main {
                  */
             }
             response.redirect("/");
+            return null;
+        });
+
+        /**
+         * Posts user to logout when needed
+         */
+        post("/logout", (request, response) -> {
+
             return null;
         });
 
@@ -94,6 +111,23 @@ public class Main {
             }
             response.redirect("/");
             return null;
+        });
+        //Possible search function
+        post("/search", (request, response) -> {
+            String searchTitle = request.queryParams("movie_title");
+
+            for(int i = 0; i < DatabaseConnector.getMovies().size(); i++)
+            {
+                if(DatabaseConnector.getMovies().contains(searchTitle))
+                {
+                    break;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return searchTitle;
         });
     }
 }

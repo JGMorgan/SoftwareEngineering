@@ -1,7 +1,9 @@
 package Users;
 
+import DatabaseOperations.DatabaseConnector;
 import Users.Buyer;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  */
 public class Seller extends Buyer {
 
-    protected List<String> salesHistory;
+    protected ArrayList<String> salesHistory;
 
     public Seller(String userName, String password)
     {
@@ -19,12 +21,12 @@ public class Seller extends Buyer {
         accountType = "Seller";
     }
 
-    public void addMovie(String movieName)
+    public void addMovie(String movieTitle)
     {
-        throw new UnsupportedOperationException();
+        DatabaseConnector.insertMovie();
     }
 
-    public List getSalesHistory()
+    public ArrayList getSalesHistory()
     {
         return salesHistory;
     }
