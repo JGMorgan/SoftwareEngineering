@@ -13,7 +13,6 @@ import java.util.List;
 public class Seller extends Buyer {
 
     protected ArrayList<String> salesHistory;
-    protected ArrayList<String> moviesList = DatabaseConnector.getMovies();
 
     public Seller(String userName, String password)
     {
@@ -24,7 +23,7 @@ public class Seller extends Buyer {
 
     public void addMovie(String movieTitle)
     {
-        moviesList.add(movieTitle);
+        DatabaseConnector.insertMovie();
     }
 
     public ArrayList getSalesHistory()
