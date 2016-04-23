@@ -40,10 +40,11 @@
                         </div>
                         <input type="submit" class="btn btn-info" value="Login" ng-click="enableAPP()"/>
                     </form>
-                    <form class="navbar-form navbar-right" ng-show="nameVisible">
+                    <form class="navbar-form navbar-right" ng-show="nameVisible" action="/logout" method="POST">
                         <div>
                             <font color="#ffffff">Hey {{name}}</font>
                         </div>
+                        <input type="submit" class="btn btn-info" value="Log Out"/>
                     </form>
                     <form class="navbar-form navbar-right" ng-show="loginVisible">
                         <input type="submit" class="btn btn-info" value="Register" ng-click="enableRegistration()"/>
