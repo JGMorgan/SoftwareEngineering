@@ -6,7 +6,7 @@ package Users;
 
 
 
-public class User {
+public abstract class User {
 
     protected String userName;
     protected String password;

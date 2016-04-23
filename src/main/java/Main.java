@@ -1,5 +1,5 @@
 import DatabaseOperations.DatabaseConnector;
-import Users.User;
+import Users.Buyer;
 import com.mongodb.MongoClient;
 
 import static spark.Spark.*;
@@ -9,6 +9,8 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import com.mongodb.client.FindIterable;
 import com.mongodb.Block;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -80,6 +82,16 @@ public class Main {
             return null;
         });
 
+        get("/register", (request, response) -> {
+            String username = request.queryParams("user_name");
+            String email = request.queryParams("email");
+
+            if(DatabaseConnector.userExists(username, email))
+                request.session().attribute(SESSION_NAME, "/invalidRegistration");
+
+            return null;
+        });
+
         /**
          * Posts registration information from the front end
          * to the Java backend
@@ -91,7 +103,7 @@ public class Main {
             String email = request.queryParams("email");
             String pass = request.queryParams("password");
             String passconfirm = request.queryParams("password_confirmation");
-            User newUser = new User(username, pass, fname, lname);
+            Buyer newUser = new Buyer(username, pass, fname, lname, );
             System.out.println(fname);
             System.out.println(pass);
             if (username != null) {

@@ -15,10 +15,86 @@ import java.util.ArrayList;
  */
 public class DatabaseConnector {
     static MongoClient client = new MongoClient("52.201.189.109", 27017);
-    static MongoDatabase db = client.getDatabase("softwareengineering");
+    static MongoDatabase db = client.getDatabase("softwarengineering");
     static MongoCollection movies = db.getCollection("movies");
     static MongoCollection users = db.getCollection("users");
 
+    /**
+     * @param userName
+     * @param password
+     * @param firstname
+     * @param lastname
+     * @param accountType
+     */
+    public static boolean insertUser(String userName, String password, String firstname, String lastname, String accountType) {
+
+        FindIterable<Document> iterable = users.find(new Document("username", userName));
+        ArrayList<String> usernames = new ArrayList();
+
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                usernames.add(document.toString());
+            }
+        });
+
+        if (usernames.size() >= 1)
+        // explain error
+        return false;
+        else{
+            users.insertOne(new Document()
+                    .append("username", userName)
+                    .append("password", password)
+                    .append("firstname", firstname)
+                    .append("lastname", lastname)
+                    .append("accounttype", accountType));
+            return true;
+        }
+    }
+
+    /**
+     * @return an arraylist with all the users
+     */
+    public static ArrayList<String> getUsers() {
+        FindIterable<Document> iterable = movies.find();
+        ArrayList<String> users = new ArrayList();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                users.add(document.toString());
+            }
+        });
+        return users;
+    }
+
+    public static boolean userExists(String username, String email) {
+        FindIterable<Document> iterable = movies.find(new Document()
+                                                      .append("username", username)
+                                                      .append("email", email));
+        ArrayList<String> users = new ArrayList();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                users.add(document.toString());
+            }
+        });
+
+        if(users.size() >= 1) return true;
+        else return false;
+    }
+
+    /**
+     * This method is for testing
+     */
+    public static void displayUsers() {
+        FindIterable<Document> iterable = users.find();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                System.out.println(document);
+            }
+        });
+    }
 
     /**
      * TODO
@@ -30,33 +106,17 @@ public class DatabaseConnector {
 
     }
 
-    /**
-     * @param userName
-     * @param password
-     * @param firstname
-     * @param lastname
-     * @param accountType
-     */
-    public static void insertUser(String userName, String password, String firstname, String lastname, String email, String accountType) {
-        users.insertOne(new Document()
-                .append("username", userName)
-                .append("password", password)
-                .append("firstname", firstname)
-                .append("lastname", lastname)
-                .append("email", email)
-                .append("accounttype", accountType));
-    }
 
     /**
      * @return an arraylist with all the movies
      */
-    public static ArrayList<Document> getMovies() {
+    public static ArrayList<String> getMovies() {
         FindIterable<Document> iterable = movies.find();
-        ArrayList<Document> movies = new ArrayList();
+        ArrayList<String> movies = new ArrayList();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                movies.add(document);
+                movies.add(document.toString());
             }
         });
         return movies;
@@ -66,28 +126,11 @@ public class DatabaseConnector {
      *
      * @return the movie if it exists if it doesn't it will return null
      */
-    public static Document getMovie(String title) {
+    public static String getMovie(String title) {
         FindIterable<Document> iterable = movies.find(new Document("name", title));
-        return iterable.first();
+        return iterable.first().toString();
     }
 
-    /**
-     *
-     * @param name
-     * @param password
-     * @return the user with that password and username if null is returned then it doesn't exist
-     */
-    public static Document getUser(String name, String password) {
-        FindIterable<Document> iterable = users.find();
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                System.out.println(document);
-            }
-        });
-
-        return iterable.first();
-    }
     /**
      * Used for adding stock and when the buyer purchases a movie
      * @param title
@@ -99,38 +142,10 @@ public class DatabaseConnector {
     }
 
     /**
-     * @return an arraylist with all the users
-     */
-    public static ArrayList<Document> getUsers() {
-        FindIterable<Document> iterable = movies.find();
-        ArrayList<Document> users = new ArrayList();
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                users.add(document);
-            }
-        });
-        return users;
-    }
-
-    /**
      * This method is for testing
      */
     public static void displayMovies() {
         FindIterable<Document> iterable = movies.find();
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                System.out.println(document);
-            }
-        });
-    }
-
-    /**
-     * This method is for testing
-     */
-    public static void displayUsers() {
-        FindIterable<Document> iterable = users.find();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {

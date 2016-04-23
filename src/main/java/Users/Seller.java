@@ -14,26 +14,17 @@ public class Seller extends Buyer {
 
     protected ArrayList<String> salesHistory;
 
-    public Seller(String userName, String password)
-    {
+    public Seller(String userName, String password) {
         super(userName, password);
         salesHistory = new ArrayList<>();
         accountType = "Seller";
     }
 
-    public void addMovie(String movieTitle)
-    {
+    public void addMovie(String movieTitle) {
         DatabaseConnector.insertMovie();
     }
 
-    public ArrayList getSalesHistory()
-    {
+    public ArrayList getSalesHistory() {
         return salesHistory;
     }
-
-
-
-
-
-
 }
