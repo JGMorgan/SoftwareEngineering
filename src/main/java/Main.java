@@ -112,5 +112,22 @@ public class Main {
             response.redirect("/");
             return null;
         });
+        //Possible search function
+        post("/search", (request, response) -> {
+            String searchTitle = request.queryParams("movie_title");
+
+            for(int i = 0; i < DatabaseConnector.getMovies().size(); i++)
+            {
+                if(DatabaseConnector.getMovies().contains(searchTitle))
+                {
+                    break;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return searchTitle;
+        });
     }
 }
