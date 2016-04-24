@@ -7,9 +7,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Gajen on 4/14/2016.
- */
+
 public class Seller extends Buyer {
 
     protected ArrayList<String> salesHistory;

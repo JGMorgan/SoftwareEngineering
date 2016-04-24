@@ -92,8 +92,6 @@ public class DatabaseConnector {
         return iterable.first();
     }
 
-
-
     /**
      * @return an arraylist with all the users
      */
@@ -167,9 +165,9 @@ public class DatabaseConnector {
      *
      * @return the movie if it exists if it doesn't it will return null
      */
-    public static String getMovie(String title) {
+    public static Document getMovie(String title) {
         FindIterable<Document> iterable = movies.find(new Document("name", title));
-        return iterable.first().toString();
+        return iterable.first();
     }
 
     /**
@@ -177,9 +175,14 @@ public class DatabaseConnector {
      * @param title
      * @param stock
      */
-    public static void updateMovieStock(String title, int stock) {
-        movies.findOneAndUpdate(new Document("name", title), new Document());
-        //replace this with an updated stock
+    public static void updateMovieStock(String title, int stockUpdate) {
+        int oldStock = Integer.parseInt(getMovie(title).get("stock").toString());
+        System.out.println(oldStock);
+        Document movie = getMovie(title);
+
+        Document updateField = new Document("$set", new Document("stock", oldStock + stockUpdate));
+
+        movies.updateOne(movie, updateField);
     }
 
     /**

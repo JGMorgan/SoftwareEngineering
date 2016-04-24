@@ -9,9 +9,7 @@ import DatabaseOperations.DatabaseConnector;
 
 import javax.swing.text.Document;
 
-/**
- * Created by Gajen on 4/14/2016.
- */
+
 public class Buyer extends User {
 
     protected ArrayList<String> wishList;
