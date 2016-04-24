@@ -231,6 +231,16 @@
                 }
 
     		});
+    		$http.get("/buyers")
+    		.then(function(response){
+    		    $scope.buyers = response.data;
+    		});
+
+    		$http.get("/sellers")
+    		.then(function(response){
+    		    $scope.sellers = response.data;
+    		});
+
     		$http.get("/movies")
     		.then(function(response){
     		    $scope.movies = response.data;
