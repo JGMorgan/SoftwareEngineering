@@ -82,7 +82,9 @@ public class Main {
         });
 
         post("/buy", (request, response) -> {
-            System.out.println(request.queryParams("buy"));
+            String movieName = request.queryParams("buy");
+            System.out.println(movieName);
+            DatabaseConnector.updateMovieStock(movieName, -1);
             response.redirect("/");
             return null;
         });
