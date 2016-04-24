@@ -33,8 +33,8 @@
                     </form>
                     <form class="navbar-form navbar-right" action="/login" method="POST" ng-show="loginVisible">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" ng-model = "username" placeholder="Username"/>
-                            <input type="password" name="pass" class="form-control" placeholder="Password"/>
+                            <input type="text" name="name" class="form-control" ng-model = "username" placeholder="Username" required>
+                            <input type="password" name="pass" class="form-control" placeholder="Password" required>
                         </div>
                         <input type="submit" class="btn btn-info" value="Login" ng-click="enableAPP()"/>
                     </form>
@@ -61,21 +61,21 @@
                     <div class="panel-body">
                         <form role="form" action="/sell" method="POST">
                             <div class="form-group">
-                                <input type="text" name="title" id="title" class="form-control input-sm" placeholder="Title">
+                                <input type="text" name="title" id="title" class="form-control input-sm" placeholder="Title" required>
                             </div>
 
                             <div class="form-group">
-                                <input type="number" min="1800" max="2016" name="year" id="year" class="form-control input-sm" placeholder="Year">
+                                <input type="number" min="1800" max="2016" name="year" id="year" class="form-control input-sm" placeholder="Year" required>
 
                             </div>
                             <div class="form-group">
-                                <input type="text" name="genre" id="genre" class="form-control input-sm" placeholder="Genre">
+                                <input type="text" name="genre" id="genre" class="form-control input-sm" placeholder="Genre" required>
                             </div>
                             <div class="form-group">
-                                <input type="number" name="stock" id="stock" class="form-control input-sm" placeholder="Stock">
+                                <input type="number" name="stock" id="stock" class="form-control input-sm" placeholder="Stock" required>
                             </div>
                             <div class="form-group">
-                                <input type="number" step="0.01" name="price" id="price" class="form-control input-sm" placeholder="Price">
+                                <input type="number" step="0.01" name="price" id="price" class="form-control input-sm" placeholder="Price" required>
                             </div>
 
                             <input type="submit" value="Post Your Movie" class="btn btn-info btn-block">
@@ -118,7 +118,7 @@
             <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please sign up for Bootsnipp <small>It's free!</small></h3>
+                        <h3 class="panel-title">Please sign up for our Movie Site</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="/register" method="POST">
