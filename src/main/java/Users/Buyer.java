@@ -20,9 +20,6 @@ public class Buyer extends User {
     public Buyer(String userName, String password, String firstName, String lastName, String email) {
         super(userName, password, firstName, lastName, email);
         accountType = "Buyer";
-//        wishList = new ArrayList<>();
-//        purchaseHistory = new ArrayList<>();
-
         DatabaseConnector.updateUserType(userName, accountType);
     }
 
