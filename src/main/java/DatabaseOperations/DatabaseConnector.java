@@ -174,8 +174,10 @@ public class DatabaseConnector {
             }
         });
         Document out = new Document();
-        for (int i = 0; i < movies.size(); i++){
-            out.append("movies"+i, movies.get(i));
+        for (int i = 0; i < movies.size(); i++) {
+            if (Integer.parseInt(movies.get(i).get("stock").toString())>0){
+                out.append("movies" + i, movies.get(i));
+            }
         }
         return out.toJson();
     }
