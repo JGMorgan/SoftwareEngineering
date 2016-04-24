@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
         staticFileLocation("public");
         port(8000);
+        System.out.println(DatabaseConnector.getBuyers());
         createRoutes();
 
 
@@ -118,6 +119,35 @@ public class Main {
                 else
                     request.session().attribute(SESSION_NAME, "/invalidRegistration");
             }
+            response.redirect("/");
+            return null;
+        });
+
+        get("/buyers", (request, response) -> {
+            return DatabaseConnector.getBuyers();
+        });
+
+        get("/sellers", (request, response) -> {
+            return DatabaseConnector.getSellers();
+        });
+
+        post("/addseller", (request, response) -> {
+            return null;
+        });
+
+        post("/removeseller", (request, response) -> {
+            return null;
+        });
+
+        post("/sell", (request, response) -> {
+            String title = request.queryParams("title");
+            String year = request.queryParams("year");
+            String genre = request.queryParams("genre");
+            int stock = Integer.parseInt(request.queryParams("stock"));
+            float price = Float.parseFloat(request.queryParams("price"));
+
+            new Movie(title, year, genre, stock, price);
+
             response.redirect("/");
             return null;
         });

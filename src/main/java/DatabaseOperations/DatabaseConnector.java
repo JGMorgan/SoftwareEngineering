@@ -41,6 +41,38 @@ public class DatabaseConnector {
         users.updateOne(user, updateField);
     }
 
+    /**
+     *
+     * @return Arraylist with all the names of the Sellers
+     */
+    public static ArrayList<String> getSellers(){
+        FindIterable<Document> iterable = users.find(new Document("accountType", "Seller"));
+        ArrayList<String> users = new ArrayList();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                users.add(document.get("username").toString());
+            }
+        });
+        return users;
+    }
+
+    /**
+     *
+     * @return Arraylist with all the names of the Buyers
+     */
+    public static ArrayList<String> getBuyers(){
+        FindIterable<Document> iterable = users.find(new Document("accountType", "Buyer"));
+        ArrayList<String> users = new ArrayList();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                users.add(document.get("username").toString());
+            }
+        });
+        return users;
+    }
+
     public static Document getUser(String name, String password) {
         FindIterable<Document> iterable = users.find(new Document()
                                                 .append("username", name)
@@ -88,8 +120,13 @@ public class DatabaseConnector {
      * this should insert a movie into the database but we need to finalize
      * what a movie element in the database should look like
      */
-    public static void insertMovie() {
-        //movies.insertOne();
+    public static void insertMovie(String title, String year, String genre, int stock, float price) {
+        movies.insertOne(new Document()
+                            .append("title", title)
+                            .append("year", year)
+                            .append("genre", genre)
+                            .append("stock", stock)
+                            .append("price", price));
 
     }
 
