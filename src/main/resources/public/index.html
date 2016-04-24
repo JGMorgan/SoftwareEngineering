@@ -187,7 +187,7 @@
 
         <!-- Page Features -->
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="m in movies track by $index">
+            <li class="list-group-item" ng-repeat="m in movies track by $index " ng-show="$index<3">
                 {{m.title}} at a price of ${{m.price.toFixed(2)}} with {{m.stock}} left in stock
                 <form role="form" action="/buy" method="POST" onsubmit="return confirm('Are you sure you want to purchase this movie?');">
                     <input type="text" name="buy" id="buy" value={{m}} class="form-control input-sm" ng-show="false">

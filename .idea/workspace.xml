@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b13191fe-de59-46b1-9e1d-410d77f60b77" name="Default" comment="">
+    <list default="true" id="b13191fe-de59-46b1-9e1d-410d77f60b77" name="Default" comment="page will only show first 3 movies instead of entire movie list now">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" />
     </list>
@@ -123,8 +123,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="190" column="43" selection-start-line="190" selection-start-column="43" selection-end-line="190" selection-end-column="43" />
+            <state relative-caret-position="219">
+              <caret line="189" column="97" selection-start-line="189" selection-start-column="97" selection-end-line="189" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -790,7 +790,7 @@
       <workItem from="1461249143924" duration="154000" />
       <workItem from="1461441124746" duration="21617000" />
       <workItem from="1461529244091" duration="3407000" />
-      <workItem from="1461533091961" duration="537000" />
+      <workItem from="1461533091961" duration="1658000" />
     </task>
     <task id="LOCAL-00001" summary="DatabaseConnector changed to static, purchase and viewMovie methods desgned for buyer class.">
       <created>1461247524324</created>
@@ -869,11 +869,18 @@
       <option name="project" value="LOCAL" />
       <updated>1461533227054</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="still formatting">
+      <created>1461533647253</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1461533647253</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35267000" />
+    <option name="totallyTimeSpent" value="36388000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -933,7 +940,9 @@
     <MESSAGE value="registration password minlength required" />
     <MESSAGE value="updateMovieStock" />
     <MESSAGE value="formatting the movie list, still needs work" />
-    <option name="LAST_COMMIT_MESSAGE" value="formatting the movie list, still needs work" />
+    <MESSAGE value="still formatting" />
+    <MESSAGE value="page will only show first 3 movies instead of entire movie list now" />
+    <option name="LAST_COMMIT_MESSAGE" value="page will only show first 3 movies instead of entire movie list now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1474,8 +1483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="190" column="43" selection-start-line="190" selection-start-column="43" selection-end-line="190" selection-end-column="43" />
+        <state relative-caret-position="219">
+          <caret line="189" column="97" selection-start-line="189" selection-start-column="97" selection-end-line="189" selection-end-column="97" />
           <folding />
         </state>
       </provider>
