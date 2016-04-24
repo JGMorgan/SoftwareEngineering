@@ -15,16 +15,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Login dropdown</a>
+                <a class="navbar-brand" ng-click="home()" href="#">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
                     <li ng-show="sellerOpsVisible"><a href="#" ng-click="enableSelling()">Sell a Movie</a></li>
-                    <li ng-show="adminOpsVisible"><a href="#" ng-click="enableAdmin()">Admin Swag</a></li>
+                    <li ng-show="adminOpsVisible"><a href="#" ng-click="enableAdmin()">Admin Page</a></li>
                 </ul>
                 <div>
                     <form class="navbar-form navbar-left" action="/search" method="POST">
@@ -206,8 +204,8 @@
             $scope.sellers = [];
             $scope.contentVisible = true;
             $scope.registrationVisible = false;
-            $scope.adminOpsVisible = true;
-            $scope.sellerOpsVisible = true;
+            $scope.adminOpsVisible = false;
+            $scope.sellerOpsVisible = false;
             $scope.sellerPageVisible = false;
             $scope.adminPageVisible = false;
             $http.get("/username")
@@ -237,6 +235,22 @@
                 }
 
     		});
+
+    		$http.get("/accounttype")
+    		.then(function(response){
+    		    $scope.accounttype = response.data;
+    		    if ($scope.accounttype == "Buyer"){
+    		        $scope.adminOpsVisible = false;
+                    $scope.sellerOpsVisible = false;
+    		    }else if($scope.accounttype == "Seller"){
+    		        $scope.adminOpsVisible = false;
+                    $scope.sellerOpsVisible = true;
+    		    }else if($scope.accounttype == "Admin"){
+    		        $scope.adminOpsVisible = true;
+                    $scope.sellerOpsVisible = false;
+    		    }
+    		});
+
     		$http.get("/buyers")
     		.then(function(response){
     		    $scope.buyers = response.data;
@@ -251,6 +265,14 @@
     		.then(function(response){
     		    $scope.movies = response.data;
     		});
+
+            $scope.home = function(){
+                console.log("Its happening");
+    			$scope.contentVisible = true;
+    			$scope.registrationVisible = false;
+    			$scope.sellerPageVisible = false;
+                $scope.adminPageVisible = false;
+    		};
 
     		$scope.enableRegistration = function(){
                 console.log("Its happening");

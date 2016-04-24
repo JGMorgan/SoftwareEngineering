@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Main {
 
     private static final String SESSION_NAME = "username";
+    private static final String SESSION_TYPE = "accounttype";
 
     public static void main(String[] args) {
         staticFileLocation("public");
@@ -46,6 +47,13 @@ public class Main {
         });
 
         /**
+         * returns account type to the front end
+         */
+        get("/accounttype", (request, response) -> {
+            return request.session().attribute(SESSION_NAME);
+        });
+
+        /**
          *This will return an array of movies that can be shown
          * to the user in the front end
          */
@@ -67,6 +75,7 @@ public class Main {
                 request.session().attribute(SESSION_NAME, "/invalid/");
             }else{
                 request.session().attribute(SESSION_NAME, name);
+                request.session().attribute(SESSION_NAME, user.get("accounttype"));
             }
             response.redirect("/");
             return null;
