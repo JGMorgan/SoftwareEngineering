@@ -22,7 +22,6 @@ public class Main {
         System.out.println(DatabaseConnector.getBuyers());
         createRoutes();
 
-
     }
 
     /**
@@ -124,11 +123,11 @@ public class Main {
         });
 
         get("/buyers", (request, response) -> {
-            return DatabaseConnector.getBuyers();
+            return DatabaseConnector.getBuyers().toArray();
         });
 
         get("/sellers", (request, response) -> {
-            return DatabaseConnector.getSellers();
+            return DatabaseConnector.getSellers().toArray();
         });
 
         post("/addseller", (request, response) -> {
