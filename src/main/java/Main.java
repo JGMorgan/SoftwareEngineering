@@ -81,6 +81,12 @@ public class Main {
             return null;
         });
 
+        post("/buy", (request, response) -> {
+            System.out.println(request.queryParams("buy"));
+            response.redirect("/");
+            return null;
+        });
+
         /**
          * Posts user to logout when needed
          */
@@ -140,10 +146,14 @@ public class Main {
         });
 
         post("/addseller", (request, response) -> {
+            DatabaseConnector.updateUserType(request.queryParams("newseller"), "Seller");
+            response.redirect("/");
             return null;
         });
 
         post("/removeseller", (request, response) -> {
+            DatabaseConnector.updateUserType(request.queryParams("exseller"), "Buyer");
+            response.redirect("/");
             return null;
         });
 
