@@ -35,11 +35,17 @@ public class DatabaseConnector {
                     .append("email", email));
     }
 
+    /**
+     *
+     * @param username
+     * @param accountType
+     */
     public static void updateUserType(String username, String accountType){
         Document user = new Document("username", username);
-        Document updateField = new Document("$set", new Document("accountType", accountType));
+        Document updateField = new Document("$set", new Document("accounttype", accountType));
         users.updateOne(user, updateField);
     }
+
 
     /**
      *
@@ -73,6 +79,12 @@ public class DatabaseConnector {
         return users;
     }
 
+    /**
+     *
+     * @param name
+     * @param password
+     * @return
+     */
     public static Document getUser(String name, String password) {
         FindIterable<Document> iterable = users.find(new Document()
                                                 .append("username", name)
@@ -97,6 +109,11 @@ public class DatabaseConnector {
         return users;
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public static Document userExists(String username) {
         FindIterable<Document> iterable = users.find(new Document("username", username));
         return iterable.first();
