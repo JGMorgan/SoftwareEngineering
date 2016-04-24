@@ -46,12 +46,7 @@ public class DatabaseConnector {
         users.updateOne(user, updateField);
     }
 
-    /**
-     *
-     * @param name
-     * @param password
-     * @return
-     */
+
     /**
      *
      * @return Arraylist with all the names of the Sellers
@@ -84,6 +79,12 @@ public class DatabaseConnector {
         return users;
     }
 
+    /**
+     *
+     * @param name
+     * @param password
+     * @return
+     */
     public static Document getUser(String name, String password) {
         FindIterable<Document> iterable = users.find(new Document()
                                                 .append("username", name)
