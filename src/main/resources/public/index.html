@@ -24,7 +24,7 @@
                     <li class="active"><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
                     <li ng-show="sellerOpsVisible"><a href="#" ng-click="enableSelling()">Sell a Movie</a></li>
-                    <li ng-show="adminOpsVisible"><a href="#">Admin Swag</a></li>
+                    <li ng-show="adminOpsVisible"><a href="#" ng-click="enableAdmin()">Admin Swag</a></li>
                 </ul>
                 <div>
                     <form class="navbar-form navbar-left" action="/search" method="POST">
@@ -61,7 +61,7 @@
                         <h3 class="panel-title">Sell a Movie</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="/register" method="POST">
+                        <form role="form" action="/sell" method="POST">
                             <div class="form-group">
                                 <input type="text" name="title" id="title" class="form-control input-sm" placeholder="Title">
                             </div>
@@ -89,7 +89,25 @@
         </div>
     </div>
     <div class="container" ng-show="adminPageVisible"><!-- /.admin page -->
+        <div class="row">
 
+            <div class="col-sm-6">
+                <font color="#000000">Buyers</font>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="b in buyers track by $index">{{b}}</li>
+                </ul>
+                <form role="form" action="/addseller" method="POST"></form>
+            </div>
+
+            <div class="col-sm-6">
+                <font color="#000000">Sellers</font>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="s in sellers track by $index">{{s}}</li>
+                </ul>
+                <form role="form" action="/removeseller" method="POST"></form>
+            </div>
+
+        </div>
     </div>
     <div class="container" ng-show="registrationVisible">
         <div class="row centered-form">
@@ -178,9 +196,11 @@
         var app = angular.module("movie_app", []);
         app.controller("movie_controller", ["$scope", "$http", function($scope, $http) {
             $scope.movies = [];
+            $scope.buyers = [];
+            $scope.sellers = [];
             $scope.contentVisible = true;
             $scope.registrationVisible = false;
-            $scope.adminOpsVisible = false;
+            $scope.adminOpsVisible = true;
             $scope.sellerOpsVisible = true;
             $scope.sellerPageVisible = false;
             $scope.adminPageVisible = false;
@@ -232,6 +252,12 @@
                 console.log("Its happening");
     			$scope.contentVisible = false;
     			$scope.sellerPageVisible = true;
+    		};
+
+    		$scope.enableAdmin = function(){
+                console.log("Its happening");
+    			$scope.contentVisible = false;
+    			$scope.adminPageVisible = true;
     		};
         }])
     </script>

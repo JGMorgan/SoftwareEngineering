@@ -20,9 +20,9 @@ public class Seller extends Buyer {
         accountType = "Seller";
     }
 
-    public void addMovie(String movieTitle) {
+    /*public void addMovie(String movieTitle) {
         DatabaseConnector.insertMovie();
-    }
+    }*/
 
     public ArrayList getSalesHistory() {
         return salesHistory;
