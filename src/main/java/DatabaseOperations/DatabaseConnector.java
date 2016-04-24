@@ -225,7 +225,7 @@ public class DatabaseConnector {
      * @return the movie if it exists if it doesn't it will return null
      */
     public static Document getMovie(String title) {
-        FindIterable<Document> iterable = movies.find(new Document("name", title));
+        FindIterable<Document> iterable = movies.find(new Document("title", title));
         return iterable.first();
     }
 
@@ -235,11 +235,11 @@ public class DatabaseConnector {
      * @param stockUpdate
      */
     public static void updateMovieStock(String title, int stockUpdate) {
-        int oldStock = Integer.parseInt(getMovie(title).get("stock").toString());
-        System.out.println(oldStock);
         Document movie = getMovie(title);
-
-        Document updateField = new Document("$set", new Document("stock", oldStock + stockUpdate));
+        System.out.println(movie.toString());
+        int oldStock = Integer.parseInt(movie.get("stock").toString());
+        System.out.println(oldStock);
+        Document updateField = new Document("$set", new Document("stock", (oldStock + stockUpdate)));
 
         movies.updateOne(movie, updateField);
     }
