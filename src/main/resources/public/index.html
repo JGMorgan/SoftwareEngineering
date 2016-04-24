@@ -169,9 +169,7 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>Welcome to our Movie Store!</h1>
-            <p><a class="btn btn-primary btn-large">Browse</a>
-            </p>
+            <h1 align="center">Welcome to our Movie Store!</h1>
         </header>
 
         <hr>
@@ -179,7 +177,7 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Latest Additions</h3>
+                <h3>Available Movies</h3>
 
             </div>
         </div>
@@ -188,9 +186,9 @@
         <!-- Page Features -->
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="m in movies track by $index">
-                {{m.title}} at a price of {{m.price.toFixed(2)}} with {{m.stock}} left in stock
-                <form role="form" action="/buy" method="POST" onsubmit="return confirm('Are you sure you want to purchase this movie?');">
-                    <input type="text" name="buy" id="buy" value={{m}} class="form-control input-sm" ng-show="false">
+                {{movieInfoFromJSON(m)}}
+                <form role="form" action="/buy" method="POST">
+                    <input type="text" name="buy" id="buy" value={{movieInfoFromJSON(m)}} class="form-control input-sm" ng-show="false">
                     <input type="submit" value="Buy" class="btn btn-info btn-block">
                 </form>
             </li>
@@ -198,8 +196,6 @@
 
     </div>
 
-
-    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
@@ -281,6 +277,13 @@
     			$scope.sellerPageVisible = false;
                 $scope.adminPageVisible = false;
     		};
+
+            $scope.movieInfoFromJSON = function(string){
+                $scope.movieTitle = angular.fromJson(m.title);
+                $scope.moviePrice = angular.fromJson(m.price);
+                return $scope.movieInfo = $scope.movieTitle + "       $ " + $scope.moviePrice;
+
+            };
 
     		$scope.enableRegistration = function(){
                 console.log("Its happening");
