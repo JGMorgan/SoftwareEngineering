@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b13191fe-de59-46b1-9e1d-410d77f60b77" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" />
     </list>
     <ignored path="MovieSite.iws" />
@@ -30,8 +29,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="129" column="59" selection-start-line="129" selection-start-column="59" selection-end-line="129" selection-end-column="59" />
+            <state relative-caret-position="320">
+              <caret line="129" column="19" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -74,7 +73,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-255">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1461462180000" expanded="true" signature="59:68215" placeholder="..." />
+                <marker date="1461462180000" expanded="true" signature="98:214" placeholder="..." />
+                <marker date="1461462180000" expanded="true" signature="192:214" placeholder="..." />
+                <marker date="1461462180000" expanded="true" signature="68116:68158" placeholder="..." />
+                <marker date="1461462180000" expanded="true" signature="68116:68176" placeholder="..." />
+                <marker date="1461462180000" expanded="true" signature="68116:68189" placeholder="..." />
+                <marker date="1461462180000" expanded="true" signature="68116:68204" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,8 +111,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2289">
-              <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+            <state relative-caret-position="317">
+              <caret line="281" column="49" selection-start-line="281" selection-start-column="49" selection-end-line="281" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -161,8 +168,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Movie.java" />
         <option value="$PROJECT_DIR$/src/main/java/Users/Seller.java" />
         <option value="$PROJECT_DIR$/src/main/java/DatabaseOperations/DatabaseConnector.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/public/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/public/index.html" />
       </list>
     </option>
   </component>
@@ -765,7 +772,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461460248946</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update">
+      <created>1461460945341</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1461460945341</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1250,7 +1264,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-255">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1461462180000" expanded="true" signature="59:68215" placeholder="..." />
+            <marker date="1461462180000" expanded="true" signature="98:214" placeholder="..." />
+            <marker date="1461462180000" expanded="true" signature="192:214" placeholder="..." />
+            <marker date="1461462180000" expanded="true" signature="68116:68158" placeholder="..." />
+            <marker date="1461462180000" expanded="true" signature="68116:68176" placeholder="..." />
+            <marker date="1461462180000" expanded="true" signature="68116:68189" placeholder="..." />
+            <marker date="1461462180000" expanded="true" signature="68116:68204" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1303,16 +1325,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="129" column="59" selection-start-line="129" selection-start-column="59" selection-end-line="129" selection-end-column="59" />
+        <state relative-caret-position="320">
+          <caret line="129" column="19" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2289">
-          <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+        <state relative-caret-position="317">
+          <caret line="281" column="49" selection-start-line="281" selection-start-column="49" selection-end-line="281" selection-end-column="49" />
           <folding />
         </state>
       </provider>

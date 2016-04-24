@@ -96,7 +96,10 @@
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="b in buyers track by $index">{{b}}</li>
                 </ul>
-                <form role="form" action="/addseller" method="POST"></form>
+                <form role="form" action="/addseller" method="POST">
+                    <input type="text" name="newseller" id="newseller" class="form-control input-sm" placeholder="Buyer's Username">
+                    <input type="submit" value="Add Seller" class="btn btn-info btn-block">
+                </form>
             </div>
 
             <div class="col-sm-6">
@@ -104,7 +107,10 @@
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="s in sellers track by $index">{{s}}</li>
                 </ul>
-                <form role="form" action="/removeseller" method="POST"></form>
+                <form role="form" action="/removeseller" method="POST">
+                    <input type="text" name="exseller" id="exseller" class="form-control input-sm" placeholder="Seller's Username">
+                    <input type="submit" value="Remove Seller" class="btn btn-info btn-block">
+                </form>
             </div>
 
         </div>
@@ -250,6 +256,8 @@
                 console.log("Its happening");
     			$scope.contentVisible = false;
     			$scope.registrationVisible = true;
+    			$scope.sellerPageVisible = false;
+                $scope.adminPageVisible = false;
     		};
 
             $scope.enableAPP = function(){
@@ -262,12 +270,16 @@
                 console.log("Its happening");
     			$scope.contentVisible = false;
     			$scope.sellerPageVisible = true;
+    			$scope.registrationVisible = false;
+    			$scope.adminPageVisible = false;
     		};
 
     		$scope.enableAdmin = function(){
                 console.log("Its happening");
     			$scope.contentVisible = false;
     			$scope.adminPageVisible = true;
+    			$scope.registrationVisible = false;
+    			$scope.sellerPageVisible = false;
     		};
         }])
     </script>
