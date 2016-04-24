@@ -37,8 +37,7 @@ public class DatabaseConnector {
 
     public static void updateUserType(String username, String accountType){
         Document user = new Document("username", username);
-        Document updateField = new Document("accountType", accountType);
-
+        Document updateField = new Document("$set", new Document("accountType", accountType));
         users.updateOne(user, updateField);
     }
 

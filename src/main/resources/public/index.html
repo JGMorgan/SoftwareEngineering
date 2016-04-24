@@ -194,7 +194,17 @@
                     $scope.loginVisible = true;
                     $scope.nameVisible = false;
                     console.log("login");
-                }else{
+                } else if($scope.name == "/invalidRegistration") {
+                    this.alert("Registration failed either to an account with the same name already being registered\n\n" +
+                            "Please try again");
+                    $scope.loginVisible = true;
+                    $scope.nameVisible = false;
+                } else if($scope.name == "/mismatchedPassRegistration"){
+                    this.alert("Password input did not match Password Confirmation\n\nPlease try again");
+                    $scope.loginVisible = true;
+                    $scope.nameVisible = false;
+                }
+                else{
                     $scope.loginVisible = false;
                     $scope.nameVisible = true;
                     console.log("post login");

@@ -105,7 +105,7 @@ public class Main {
             String passconfirm = request.queryParams("password_confirmation");
 
             Document user = DatabaseConnector.userExists(username);
-            if(user == null ) {
+            if(user == null && pass.equals(passconfirm)) {
                 new Buyer(username, pass, fname, lname, email);
                 System.out.println(fname);
                 System.out.println(pass);
@@ -113,7 +113,10 @@ public class Main {
 
             }
             else{
-                request.session().attribute(SESSION_NAME, "/invalidRegistration");
+                if(!pass.equals(passconfirm))
+                    request.session().attribute(SESSION_NAME, "/mismatchedPassRegistration");
+                else
+                    request.session().attribute(SESSION_NAME, "/invalidRegistration");
             }
             response.redirect("/");
             return null;

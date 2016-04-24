@@ -25,7 +25,7 @@ public class Buyer extends User {
 //        wishList = new ArrayList<>();
 //        purchaseHistory = new ArrayList<>();
 
-//        DatabaseConnector.updateUserType(userName, accountType);
+        DatabaseConnector.updateUserType(userName, accountType);
     }
 
     public void purchase(String movieTitle) { DatabaseConnector.updateMovieStock(movieTitle, -1); }
