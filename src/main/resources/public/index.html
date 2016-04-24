@@ -187,7 +187,7 @@
 
         <!-- Page Features -->
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="m in movies track by $index">{{m}}</li>
+            <li class="list-group-item" ng-repeat="m in movies track by $index">{{m.title}} at a price of ${{m.price.toFixed(2)}} with {{m.stock}} left in stock              PURCHASE</li>
         </ul>
 
     </div>
