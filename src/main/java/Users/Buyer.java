@@ -28,7 +28,7 @@ public class Buyer extends User {
 
     public void purchase(String movieTitle) { DatabaseConnector.updateMovieStock(movieTitle, -1); }
 
-    public String viewMovie(String movieTitle) { return DatabaseConnector.getMovie(movieTitle); }
+    public String viewMovie(String movieTitle) { return DatabaseConnector.getMovie(movieTitle).toString(); }
 
     public String getAccountType() { return accountType; }
 

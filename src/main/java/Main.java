@@ -50,7 +50,7 @@ public class Main {
          * returns account type to the front end
          */
         get("/accounttype", (request, response) -> {
-            return request.session().attribute(SESSION_NAME);
+            return request.session().attribute(SESSION_TYPE);
         });
 
         /**
@@ -58,7 +58,7 @@ public class Main {
          * to the user in the front end
          */
         get("/movies", (request, response) -> {
-            return DatabaseConnector.getMovies().toArray();
+            return DatabaseConnector.getMoviesJSON();
         });
 
         /**
@@ -75,7 +75,7 @@ public class Main {
                 request.session().attribute(SESSION_NAME, "/invalid/");
             }else{
                 request.session().attribute(SESSION_NAME, name);
-                request.session().attribute(SESSION_NAME, user.get("accounttype"));
+                request.session().attribute(SESSION_TYPE, user.get("accounttype"));
             }
             response.redirect("/");
             return null;
@@ -132,11 +132,11 @@ public class Main {
         });
 
         get("/buyers", (request, response) -> {
-            return DatabaseConnector.getBuyers().toArray();
+            return DatabaseConnector.getBuyersJSON();
         });
 
         get("/sellers", (request, response) -> {
-            return DatabaseConnector.getSellers().toArray();
+            return DatabaseConnector.getSellersJSON();
         });
 
         post("/addseller", (request, response) -> {

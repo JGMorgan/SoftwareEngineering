@@ -162,6 +162,63 @@ public class DatabaseConnector {
     }
 
     /**
+     * @return a JSON object with all the movies
+     */
+    public static String getMoviesJSON() {
+        FindIterable<Document> iterable = movies.find();
+        ArrayList<Document> movies = new ArrayList();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                movies.add(document);
+            }
+        });
+        Document out = new Document();
+        for (int i = 0; i < movies.size(); i++){
+            out.append("movies"+i, movies.get(i));
+        }
+        return out.toJson();
+    }
+
+    /**
+     * @return a JSON object with all the sellers
+     */
+    public static String getSellersJSON() {
+        FindIterable<Document> iterable = users.find(new Document("accounttype", "Seller"));
+        ArrayList<Document> sellers = new ArrayList();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                sellers.add(document);
+            }
+        });
+        Document out = new Document();
+        for (int i = 0; i < sellers.size(); i++){
+            out.append("movies"+i, sellers.get(i));
+        }
+        return out.toJson();
+    }
+
+    /**
+     * @return a JSON object with all the buyers
+     */
+    public static String getBuyersJSON() {
+        FindIterable<Document> iterable = users.find(new Document("accounttype", "Buyer"));
+        ArrayList<Document> buyers = new ArrayList();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                buyers.add(document);
+            }
+        });
+        Document out = new Document();
+        for (int i = 0; i < buyers.size(); i++){
+            out.append("movies"+i, buyers.get(i));
+        }
+        return out.toJson();
+    }
+
+    /**
      *
      * @return the movie if it exists if it doesn't it will return null
      */
@@ -173,7 +230,7 @@ public class DatabaseConnector {
     /**
      * Used for adding stock and when the buyer purchases a movie
      * @param title
-     * @param stock
+     * @param stockUpdate
      */
     public static void updateMovieStock(String title, int stockUpdate) {
         int oldStock = Integer.parseInt(getMovie(title).get("stock").toString());
