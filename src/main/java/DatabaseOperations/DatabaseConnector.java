@@ -186,7 +186,9 @@ public class DatabaseConnector {
             }
             if (stockAsInt>0){
                 System.out.println(stockAsInt + " is the stock count for index " + i);
-                out.append("movies" + i, movies.get(i));
+                out.append(movies.get(i).get("title").toString() + " at a price of $"
+                        +movies.get(i).get("price").toString() + " with "
+                        +movies.get(i).get("stock").toString() + " left in stock", movies.get(i));
             }
         }
         return out.toJson();

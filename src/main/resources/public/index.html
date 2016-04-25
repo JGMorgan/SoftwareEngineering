@@ -25,11 +25,11 @@
                     <li ng-show="adminOpsVisible"><a href="#" ng-click="enableAdmin()">Admin Page</a></li>
                 </ul>
                 <div>
-                    <form class="navbar-form navbar-left" action="/search" method="POST">
+                    <form class="navbar-form navbar-left">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search" name="search">
+                            <input type="text" class="form-control" ng-model="search" placeholder="Search">
                         </div>
-                        <input type="submit" class="btn btn-info" value="Search"/>
+                        <input type="submit" class="btn btn-info" value="Search" ng-click="filter()"/>
                     </form>
                     <form class="navbar-form navbar-right" action="/login" method="POST" ng-show="loginVisible">
                         <div class="form-group">
@@ -185,8 +185,8 @@
 
         <!-- Page Features -->
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="m in movies track by $index" >
-                {{m.title}} at a price of ${{m.price.toFixed(2)}} with {{m.stock}} left in stock
+            <li class="list-group-item" ng-repeat="m in movies | orderBy:'title' " >
+                {{m}}
                 <form role="form" action="/buy" method="POST" onsubmit="return confirm('Are you sure you want to purchase this movie?');">
                     <input type="text" name="buy" id="buy" value={{m.title}} class="form-control input-sm" ng-show="false">
                     <input type="submit" value="Buy" class="btn btn-info btn-block">
@@ -205,6 +205,7 @@
         var app = angular.module("movie_app", []);
         app.controller("movie_controller", ["$scope", "$http", function($scope, $http) {
             $scope.movies = [];
+            $scope.allMovies = [];
             $scope.buyers = [];
             $scope.sellers = [];
             $scope.contentVisible = true;
@@ -269,7 +270,11 @@
 
     		$http.get("/movies")
     		.then(function(response){
-    		    $scope.movies = response.data;
+    		    $scope.allMovies = response.data;
+    		    for (var movie in $scope.allMovies){
+                    $scope.movies.push(movie);
+                }
+    		    console.log($scope.movies);
     		});
 
             $scope.home = function(){
@@ -309,6 +314,26 @@
     			$scope.registrationVisible = false;
     			$scope.sellerPageVisible = false;
     		};
+
+    		$scope.filter = function(){
+                if($scope.search == "" || $scope.search == null){
+                    for (var movie in $scope.allMovies){
+                        $scope.movies.push(movie);
+                    }
+                }else{
+
+                    $scope.movies = [];
+                    console.log($scope.search);
+
+                    for (var movie in $scope.allMovies){
+                        console.log("looping");
+                        console.log(movie);
+                        if (movie.includes($scope.search)){
+                            $scope.movies.push(movie);
+                        }
+                    }
+                }
+    		}
         }])
     </script>
 </body>
