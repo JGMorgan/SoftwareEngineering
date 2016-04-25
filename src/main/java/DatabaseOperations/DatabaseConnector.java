@@ -174,8 +174,18 @@ public class DatabaseConnector {
             }
         });
         Document out = new Document();
+        int stockAsInt = 0;
+        int decimalIndex = 0;
         for (int i = 0; i < movies.size(); i++) {
-            if (Integer.parseInt(movies.get(i).get("stock").toString())>0){
+
+            try{if(movies.get(i).get("stock").toString().indexOf('.')==-1){decimalIndex = movies.get(i).get("stock").toString().length();}
+                else decimalIndex = movies.get(i).get("stock").toString().indexOf('.');
+                stockAsInt = Integer.parseInt(movies.get(i).get("stock").toString().substring(0,decimalIndex));}
+            catch(NumberFormatException e){
+                System.out.println("Number couldn't be parsed: " + movies.get(i).get("stock").toString());
+            }
+            if (stockAsInt>0){
+                System.out.println(stockAsInt + " is the stock count for index " + i);
                 out.append("movies" + i, movies.get(i));
             }
         }
