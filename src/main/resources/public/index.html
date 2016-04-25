@@ -92,7 +92,7 @@
             <div class="col-sm-6">
                 <font color="#000000">Buyers</font>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="b in buyers track by $index">{{b}}</li>
+                    <li class="list-group-item" ng-repeat="b in buyers track by $index">{{b.username}}</li>
                 </ul>
                 <form role="form" action="/addseller" method="POST">
                     <input type="text" name="newseller" id="newseller" class="form-control input-sm" placeholder="Buyer's Username">
@@ -103,7 +103,7 @@
             <div class="col-sm-6">
                 <font color="#000000">Sellers</font>
                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="s in sellers track by $index">{{s}}</li>
+                    <li class="list-group-item" ng-repeat="s in sellers track by $index">{{s.username}}</li>
                 </ul>
                 <form role="form" action="/removeseller" method="POST">
                     <input type="text" name="exseller" id="exseller" class="form-control input-sm" placeholder="Seller's Username">
@@ -185,7 +185,7 @@
 
         <!-- Page Features -->
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="m in movies track by $index " ng-show="$index<3">
+            <li class="list-group-item" ng-repeat="m in movies track by $index ">
                 {{m.title}} at a price of ${{m.price.toFixed(2)}} with {{m.stock}} left in stock
                 <form role="form" action="/buy" method="POST" onsubmit="return confirm('Are you sure you want to purchase this movie?');">
                     <input type="text" name="buy" id="buy" value={{m.title}} class="form-control input-sm" ng-show="false">
