@@ -97,6 +97,7 @@ public class Main {
         post("/logout", (request, response) -> {
 
             request.session().attribute(SESSION_NAME, null);
+            request.session().attribute(SESSION_TYPE, null);
             response.redirect("/");
             return null;
         });
