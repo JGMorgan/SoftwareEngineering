@@ -7,6 +7,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,8 @@ public class DatabaseConnector {
     static MongoDatabase db = client.getDatabase("softwareengineering");
     static MongoCollection movies = db.getCollection("movies");
     static MongoCollection users = db.getCollection("users");
+    static DecimalFormat stockFormat = new DecimalFormat("###");
+    static DecimalFormat priceFormat = new DecimalFormat("###.##");
 
     /**
      * @param userName
@@ -187,8 +190,8 @@ public class DatabaseConnector {
             if (stockAsInt>0){
                 System.out.println(stockAsInt + " is the stock count for index " + i);
                 out.append(movies.get(i).get("title").toString() + " at a price of $"
-                        +movies.get(i).get("price").toString() + " with "
-                        +movies.get(i).get("stock").toString() + " left in stock", movies.get(i));
+                        +priceFormat.format(Float.parseFloat(movies.get(i).get("price").toString())) + " with "
+                        +stockFormat.format(Float.parseFloat(movies.get(i).get("stock").toString())) + " left in stock", movies.get(i));
             }
         }
         return out.toJson();
