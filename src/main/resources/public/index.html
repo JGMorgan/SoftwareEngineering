@@ -322,6 +322,8 @@
 
     		$scope.filter = function(){
                 if($scope.search == "" || $scope.search == null){
+                    console.log($scope.allMovies);
+                    $scope.movies = [];
                     for (var movie in $scope.allMovies){
                         $scope.movies.push(movie);
                     }
