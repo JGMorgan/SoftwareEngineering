@@ -188,7 +188,7 @@
             <li class="list-group-item" ng-repeat="m in movies | orderBy:'title' " >
                 {{m}}
                 <form role="form" action="/buy" method="POST" onsubmit="return confirm('Are you sure you want to purchase this movie?');">
-                    <input type="text" name="buy" id="buy" value={{m.title}} class="form-control input-sm" ng-show="false">
+                    <input type="text" name="buy" id="buy" value={{m}} class="form-control input-sm" ng-show="false">
                     <input type="submit" value="Buy" class="btn btn-info btn-block" ng-show="buyVisible">
                 </form>
             </li>

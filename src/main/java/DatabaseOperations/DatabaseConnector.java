@@ -247,7 +247,7 @@ public class DatabaseConnector {
      * @param stockUpdate
      */
     public static void updateMovieStock(String title, int stockUpdate) {
-        Document movie = getMovie(title);
+        Document movie = getMovie(title.split(" ")[0]);
         System.out.println(movie.toString());
         int oldStock = Integer.parseInt(movie.get("stock").toString());
         System.out.println(oldStock);
